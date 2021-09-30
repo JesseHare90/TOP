@@ -34,8 +34,8 @@ a{
     padding: 10px;
 }
 
-h1{
+.nav{
     font-size: 24px;
     color: #f9faf8;
-    margin-left: 40px;
+    margin-left: 5%;
 }
