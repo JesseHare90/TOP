@@ -144,3 +144,11 @@ figure{
     font-style: italic;
     color: #1F2937;
 }
+
+cite{
+    text-align: right;
+    display: block;
+    width:70%;
+    font-weight: bold;
+    margin-top: 10px;
+}
