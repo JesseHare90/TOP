@@ -103,6 +103,7 @@ p.signupp{
 #thumbnails{
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-between;
     gap: 10px;
     align-items: center;
@@ -126,6 +127,7 @@ figcaption{
 
 figure{
     margin-top: 0;
+    
 }
 
 #quotes{
