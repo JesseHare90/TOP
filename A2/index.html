@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+  
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paper Scissors Rock</title>
+    <link rel="stylesheet" href="style.css">
 
-
-    <script type="text/javascript">
+    <script type="text/javascript" defer>
         <!-- computerPlay function returns paper, scissors or rock randomly -->
             function computerPlay(){
               let roll = Math.floor(Math.random() * 3)
@@ -68,7 +69,7 @@
                   return result;
                 }
             }
-        <!-- game function, plays 5 rounds and keeps score-->
+        <!-- game function, plays 5 rounds and keeps score
 
             function game(){
                 let playerScore = 0;
@@ -93,10 +94,203 @@
                     }
                 }
             }
-       game() 
+       //game() 
+       -->
+       
     </script>
 </head>
 <body>
-    
+  <h1>Paper, Scissors, Rock!</h1>
+   <div id='buttons'>
+      <button id='rock' class='elementSelect'><img src='images/rock.png'></button>
+      <button id='paper' class='elementSelect'><img src='images/paper.png'></button>
+      <button id='scissors' class='elementSelect'><img src='images/scissors.png'></button>
+   </div> 
+   <h2>Results</h2>
+   <div id="Results">
+     <p></p>
+   </div>
 </body>
+<script defer>
+  //define global variables for player and computer score
+  let playerScore = 0;
+  let computerScore = 0;
+
+  //add hover effect for buttons
+  const rockButton = document.getElementById("rock");
+       rockButton.onmouseenter = function(){
+         rockButton.classList.add("hover");
+       };
+       rockButton.onmouseleave = function(){
+         rockButton.classList.remove("hover");
+       };
+
+  const paperButton = document.getElementById("paper");
+  paperButton.onmouseenter = function(){
+    paperButton.classList.add("hover");
+  };
+  paperButton.onmouseleave = function(){
+    paperButton.classList.remove("hover");
+  };
+
+  const scissorsButton = document.getElementById("scissors");
+  scissorsButton.onmouseenter = function(){
+    scissorsButton.classList.add("hover");
+  };
+  scissorsButton.onmouseleave = function(){
+    scissorsButton.classList.remove("hover");
+  };
+  //function to play a round
+  function playRound(playerInput, computerInput){
+                //let playerInput = player.toLowerCase()
+                if (playerInput === computerInput){
+                    let result = new Array();
+                    result[0] = "It is a tie!"
+                    result[1] = "tie"
+                  return result;  
+                }
+                if (playerInput === 'paper' && computerInput === 'rock'){
+                    let result = new Array();
+                    result[0] = "You Win! Paper beats Rock!"
+                    result[1] = "win"
+                  return result;             
+                }
+                if (playerInput === 'rock' && computerInput === 'paper'){
+                    let result = new Array();
+                    result[0] = "You Lose! Paper beats Rock!"
+                    result[1] = "lose"
+                  return result;
+                }
+                if (playerInput === 'scissors' && computerInput === 'paper'){
+                    let result = new Array();
+                    result[0] = "You Win! scissors beats paper!"
+                    result[1] = "win"
+                  return result;
+                }
+                if (playerInput === 'paper' && computerInput === 'scissors'){
+                    let result = new Array();
+                    result[0] = "You Lose! scissors beats paper!"
+                    result[1] = "lose"
+                  return result;
+                }
+                if (playerInput === 'rock' && computerInput === 'scissors'){
+                    let result = new Array();
+                    result[0] = "You Win! rock beats scissors!"
+                    result[1] = "win"
+                  return result;
+                }
+                if (playerInput === 'scissors' && computerInput === 'rock'){
+                    let result = new Array();
+                    result[0] = "You Lose! rock beats scissors!"
+                    result[1] = "lose"
+                  return result;
+                }
+            };
+  //get computer choice, post results to div, best to 3
+  const resultDiv = document.getElementById("Results");
+  function computerPlay(){
+    let roll = Math.floor(Math.random() * 3)
+    if (roll === 0){
+          return 'rock';
+    }
+    if (roll === 1){
+          return 'scissors';
+    }
+    if (roll === 2){
+          return 'paper';
+    }  
+  };
+
+  paperButton.onclick = function(){
+    let result = playRound('paper',computerPlay());
+    if (result[1] === 'lose'){
+      //give computer score
+      computerScore++
+      console.log("Player Score is: "+playerScore+" Computer Score is: "+computerScore);
+      resultDiv.innerHTML = result[0];
+
+    }
+    if (result[1] === 'win'){
+      //give player score
+      playerScore++;
+      console.log("Player Score is: "+playerScore+" Computer Score is: "+computerScore);
+      resultDiv.innerHTML = result[0];
+    }
+    if (playerScore === 3){
+      resultDiv.innerHTML = "You have won!";
+      console.log("Player Score is: "+playerScore+" Computer Score is: "+computerScore+"You win!");
+      computerScore = 0;
+      playerScore= 0;
+    }
+    if (computerScore === 3){
+      resultDiv.innerHTML = "The computer wins!";
+      console.log("Player Score is: "+playerScore+" Computer Score is: "+computerScore+"You Lose!");
+      computerScore = 0;
+      playerScore= 0;
+    }
+    
+  };
+
+
+  rockButton.onclick = function(){
+    let result = playRound('rock',computerPlay());
+    if (result[1] === 'lose'){
+      //give computer score
+      computerScore++
+      console.log("Player Score is: "+playerScore+" Computer Score is: "+computerScore);
+      resultDiv.innerHTML = result[0];
+
+    }
+    if (result[1] === 'win'){
+      //give player score
+      playerScore++;
+      console.log("Player Score is: "+playerScore+" Computer Score is: "+computerScore);
+      resultDiv.innerHTML = result[0];
+    }
+    if (playerScore === 3){
+      resultDiv.innerHTML = "You have won!";
+      console.log("Player Score is: "+playerScore+" Computer Score is: "+computerScore+"You win!");
+      computerScore = 0;
+      playerScore= 0;
+    }
+    if (computerScore === 3){
+      resultDiv.innerHTML = "The computer wins!";
+      console.log("Player Score is: "+playerScore+" Computer Score is: "+computerScore+"You Lose!");
+      computerScore = 0;
+      playerScore= 0;
+    }
+    
+  };
+
+
+  scissorsButton.onclick = function(){
+    let result = playRound('scissors',computerPlay());
+    if (result[1] === 'lose'){
+      //give computer score
+      computerScore++
+      console.log("Player Score is: "+playerScore+" Computer Score is: "+computerScore);
+      resultDiv.innerHTML = result[0];
+
+    }
+    if (result[1] === 'win'){
+      //give player score
+      playerScore++;
+      console.log("Player Score is: "+playerScore+" Computer Score is: "+computerScore);
+      resultDiv.innerHTML = result[0];
+    }
+    if (playerScore === 3){
+      resultDiv.innerHTML = "You have won!";
+      console.log("Player Score is: "+playerScore+" Computer Score is: "+computerScore+"You win!");
+      computerScore = 0;
+      playerScore= 0;
+    }
+    if (computerScore === 3){
+      resultDiv.innerHTML = "The computer wins!";
+      console.log("Player Score is: "+playerScore+" Computer Score is: "+computerScore+"You Lose!");
+      computerScore = 0;
+      playerScore= 0;
+    }
+    
+  };
+</script>
 </html>

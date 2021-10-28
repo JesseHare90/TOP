@@ -1,0 +1,8 @@
+button{
+    background-color: transparent;
+    border: none;
+}
+
+.hover{
+    scale: 1.1;
+}
